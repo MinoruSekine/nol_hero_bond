@@ -1,5 +1,5 @@
 function CalcBond(level, status){
-    return Math.ceil(((level + 6) * status) / 100);
+    return Math.floor(((level + 6) * status) / 100);
 }
 
 function CalcStatus(level, bond){
