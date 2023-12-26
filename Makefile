@@ -10,6 +10,8 @@ SITE_OUT_DIR := $(OUT_ROOT_DIR)/site
 SITE_OUT_HTML := $(SITE_OUT_DIR)/$(HTML_FILE_NAME)
 SITE_OUT_JS := $(SITE_OUT_DIR)/$(JS_FILE_NAME)
 
+VERSION := $(shell git log -n 1 --pretty=format:"%H")
+
 all: site
 
 clean: clean-out
@@ -24,7 +26,7 @@ site:  $(SITE_OUT_HTML) $(SITE_OUT_JS)
 
 $(SITE_OUT_HTML):
 	mkdir -p $(SITE_OUT_DIR)
-	cp $(SRC_HTML) $(SITE_OUT_HTML)
+	sed 's/NolHeroBondVersion/$(VERSION)/g' $(SRC_HTML) > $(SITE_OUT_HTML)
 
 $(SITE_OUT_JS):
 	mkdir -p $(SITE_OUT_DIR)
