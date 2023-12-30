@@ -33,8 +33,11 @@ $(SITE_OUT_JS):
 	mkdir -p $(SITE_OUT_DIR)
 	cp $(SRC_JS) $(SITE_OUT_JS)
 
-site-jsdoc:
+site-jsdoc: setup-npm
 	mkdir -p $(SITE_OUT_JSDOC_DIR)
 	npm run doc
 
-.PHONY: all clean clean-out clean-site site site-jsdoc
+setup-npm:
+	npm install
+
+.PHONY: all clean clean-out clean-site site site-jsdoc setup-npm
