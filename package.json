@@ -1,9 +1,11 @@
 {
   "devDependencies": {
     "eslint": "^2.0.0",
-    "eslint-config-google": "^0.4.0"
+    "eslint-config-google": "^0.4.0",
+    "jsdoc": "^4.0.2"
   },
   "scripts": {
-      "lint": "eslint -c google nol_hero_bond.js"
+    "lint": "eslint -c google nol_hero_bond.js",
+    "doc": "jsdoc . -d out/site/jsdoc"
   }
 }
