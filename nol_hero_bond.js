@@ -1,4 +1,12 @@
 /**
+ * @overview Functions to calculate heros' bond value of
+ *           Nobunaga's ambition Online.
+ *
+ * @author Minoru Sekine
+ * @copyright Copyrght 2023, 2024 Minoru Sekine
+ */
+
+/**
  * Calculate bond value by specified limit break level and status.
  *
  * @param {number} level - Limit break level
