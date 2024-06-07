@@ -25,11 +25,11 @@ clean-site:
 
 site:  $(SITE_OUT_HTML) $(SITE_OUT_JS) site-jsdoc
 
-$(SITE_OUT_HTML):
+$(SITE_OUT_HTML): $(SRC_HTML)
 	mkdir -p $(SITE_OUT_DIR)
 	sed 's/NolHeroBondVersion/$(VERSION)/g' $(SRC_HTML) > $(SITE_OUT_HTML)
 
-$(SITE_OUT_JS):
+$(SITE_OUT_JS): $(SRC_JS)
 	mkdir -p $(SITE_OUT_DIR)
 	cp $(SRC_JS) $(SITE_OUT_JS)
 
