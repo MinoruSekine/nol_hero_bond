@@ -11,7 +11,7 @@ SITE_OUT_HTML := $(SITE_OUT_DIR)/$(HTML_FILE_NAME)
 SITE_OUT_JS := $(SITE_OUT_DIR)/$(JS_FILE_NAME)
 SITE_OUT_JSDOC_DIR := $(SITE_OUT_DIR)/jsdoc
 
-VERSION := $(shell git log -n 1 --pretty=format:"%H")
+VERSION := $(shell git log -n 1 --pretty=format:"%h")
 
 all: site
 
