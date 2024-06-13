@@ -1,13 +1,16 @@
 HTML_FILE_NAME := index.html
+CSS_FILE_NAME := nol_hero_bond.css
 JS_FILE_NAME := nol_hero_bond.js
 
 SRC_DIR := .
 SRC_HTML := $(SRC_DIR)/$(HTML_FILE_NAME)
+SRC_CSS := $(SRC_DIR)/$(CSS_FILE_NAME)
 SRC_JS := $(SRC_DIR)/$(JS_FILE_NAME)
 
 OUT_ROOT_DIR := out
 SITE_OUT_DIR := $(OUT_ROOT_DIR)/site
 SITE_OUT_HTML := $(SITE_OUT_DIR)/$(HTML_FILE_NAME)
+SITE_OUT_CSS := $(SITE_OUT_DIR)/$(CSS_FILE_NAME)
 SITE_OUT_JS := $(SITE_OUT_DIR)/$(JS_FILE_NAME)
 SITE_OUT_JSDOC_DIR := $(SITE_OUT_DIR)/jsdoc
 
@@ -23,11 +26,15 @@ clean-out: clean-site
 clean-site:
 	rm -rf $(SITE_OUT_DIR)
 
-site:  $(SITE_OUT_HTML) $(SITE_OUT_JS) site-jsdoc
+site:  $(SITE_OUT_HTML) $(SITE_OUT_CSS) $(SITE_OUT_JS) site-jsdoc
 
 $(SITE_OUT_HTML): $(SRC_HTML)
 	mkdir -p $(SITE_OUT_DIR)
 	sed 's/NolHeroBondVersion/$(VERSION)/g' $(SRC_HTML) > $(SITE_OUT_HTML)
+
+$(SITE_OUT_CSS): $(SRC_CSS)
+	mkdir -p $(SITE_OUT_DIR)
+	cp $(SRC_CSS) $(SITE_OUT_CSS)
 
 $(SITE_OUT_JS): $(SRC_JS)
 	mkdir -p $(SITE_OUT_DIR)
