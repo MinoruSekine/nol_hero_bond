@@ -28,16 +28,16 @@ clean-site:
 
 site:  $(SITE_OUT_HTML) $(SITE_OUT_CSS) $(SITE_OUT_JS) site-jsdoc
 
-$(SITE_OUT_HTML): $(SRC_HTML)
-	mkdir -p $(SITE_OUT_DIR)
+$(SITE_OUT_DIR):
+	mkdir -p $@
+
+$(SITE_OUT_HTML): $(SITE_OUT_DIR) $(SRC_HTML)
 	sed 's/NolHeroBondVersion/$(VERSION)/g' $(SRC_HTML) > $(SITE_OUT_HTML)
 
-$(SITE_OUT_CSS): $(SRC_CSS)
-	mkdir -p $(SITE_OUT_DIR)
+$(SITE_OUT_CSS): $(SITE_OUT_DIR) $(SRC_CSS)
 	cp $(SRC_CSS) $(SITE_OUT_CSS)
 
-$(SITE_OUT_JS): $(SRC_JS)
-	mkdir -p $(SITE_OUT_DIR)
+$(SITE_OUT_JS): $(SITE_OUT_DIR) $(SRC_JS)
 	cp $(SRC_JS) $(SITE_OUT_JS)
 
 site-jsdoc: setup-npm
