@@ -50,4 +50,8 @@ $(SITE_OUT_JSDOC_HTML): $(SITE_OUT_JSDOC_DIR) $(SRC_JS)
 
 site-jsdoc: $(SITE_OUT_JSDOC_HTML)
 
-.PHONY: all clean clean-out clean-site site site-jsdoc
+lint:
+	npm install
+	npm run lint
+
+.PHONY: all clean clean-out clean-site site site-jsdoc lint
