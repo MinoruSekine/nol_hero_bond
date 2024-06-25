@@ -13,6 +13,7 @@ SITE_OUT_HTML := $(SITE_OUT_DIR)/$(HTML_FILE_NAME)
 SITE_OUT_CSS := $(SITE_OUT_DIR)/$(CSS_FILE_NAME)
 SITE_OUT_JS := $(SITE_OUT_DIR)/$(JS_FILE_NAME)
 SITE_OUT_JSDOC_DIR := $(SITE_OUT_DIR)/jsdoc
+SITE_OUT_JSDOC_HTML := $(SITE_OUT_JSDOC_DIR)/index.html
 
 VERSION := $(shell git log -n 1 --pretty=format:"%h")
 
@@ -40,11 +41,17 @@ $(SITE_OUT_CSS): $(SITE_OUT_DIR) $(SRC_CSS)
 $(SITE_OUT_JS): $(SITE_OUT_DIR) $(SRC_JS)
 	cp $(SRC_JS) $(SITE_OUT_JS)
 
-site-jsdoc: setup-npm
-	mkdir -p $(SITE_OUT_JSDOC_DIR)
+$(SITE_OUT_JSDOC_DIR): $(SITE_OUT_DIR)
+	mkdir -p $@
+
+$(SITE_OUT_JSDOC_HTML): $(SITE_OUT_JSDOC_DIR) $(SRC_JS)
+	npm install
 	npm run doc
 
-setup-npm:
-	npm install
+site-jsdoc: $(SITE_OUT_JSDOC_HTML)
 
-.PHONY: all clean clean-out clean-site site site-jsdoc setup-npm
+lint:
+	npm install
+	npm run lint
+
+.PHONY: all clean clean-out clean-site site site-jsdoc lint
