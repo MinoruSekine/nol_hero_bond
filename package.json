@@ -2,10 +2,13 @@
   "devDependencies": {
     "eslint": "^2.0.0",
     "eslint-config-google": "^0.4.0",
-    "jsdoc": "^4.0.2"
+    "jsdoc": "^4.0.2",
+    "stylelint": "^16.6.1",
+    "stylelint-config-standard": "^36.0.1"
   },
   "scripts": {
     "eslint": "eslint -c google nol_hero_bond.js",
+    "stylelint": "stylelint nol_hero_bond.css",
     "doc": "jsdoc . -d out/site/jsdoc"
   }
 }
