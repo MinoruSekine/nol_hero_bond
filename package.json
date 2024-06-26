@@ -5,7 +5,7 @@
     "jsdoc": "^4.0.2"
   },
   "scripts": {
-    "lint": "eslint -c google nol_hero_bond.js",
+    "eslint": "eslint -c google nol_hero_bond.js",
     "doc": "jsdoc . -d out/site/jsdoc"
   }
 }
