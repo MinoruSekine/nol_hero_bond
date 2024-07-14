@@ -1,4 +1,35 @@
+body{
+    font-size: 1em
+}
+
+@media screen and (width <= 768px){
+    body{
+	font-size: 3vw
+    }
+}
+
+h1{
+    font-size: 200%
+}
+
+h2{
+    font-size: 150%
+}
+
+h3{
+    font-size: 125%
+}
+
+p{
+    font-size: 100%
+}
+
+li{
+    font-size: 100%
+}
+
 span.input{
     display: inline-block;
-    width: 6em
+    width: 6em;
+    font-size: 100%
 }
