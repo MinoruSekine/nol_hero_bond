@@ -16,5 +16,8 @@ jobs:
         with:
           node-version: 18
 
+      - name: Install jsdoc
+        run: npm install
+
       - name: Build site
         run: make -j site

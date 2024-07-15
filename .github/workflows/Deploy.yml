@@ -19,6 +19,9 @@ jobs:
         with:
           node-version: 18
 
+      - name: Install linters
+        run: npm install
+
       - name: Build site
         run: |
           make site
