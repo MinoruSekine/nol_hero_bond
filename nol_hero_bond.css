@@ -28,6 +28,10 @@ li{
     font-size: 100%
 }
 
+input{
+    font-size: 100%
+}
+
 span.input{
     display: inline-block;
     width: 6em;
