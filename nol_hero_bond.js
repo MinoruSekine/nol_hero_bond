@@ -50,7 +50,7 @@ function calcStatus(level, bond) {
  * Update all elements on HTML by current inputs.
  */
 function update() {
-  let level = parseInt(document.getElementById('level-input').value, 10);
+  let level = parseInt(document.getElementById('level-select').value, 10);
   let status = parseInt(document.getElementById('status-input').value, 10);
   let bondInput = document.getElementById('bond-input');
   const bond = calcBond(level, status);
@@ -68,8 +68,8 @@ function update() {
 }
 
 window.onload = () => {
-  let levelInput = document.getElementById('level-input');
-  levelInput.addEventListener('input', () => {
+  let levelInput = document.getElementById('level-select');
+  levelInput.addEventListener('change', () => {
     update();
   });
 
