@@ -37,3 +37,7 @@ span.input{
     width: 6em;
     font-size: 100%
 }
+
+select{
+    font-size: 100%
+}
