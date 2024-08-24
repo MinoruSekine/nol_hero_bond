@@ -10,3 +10,8 @@
 ### ライセンス
 
 - [AGPL v3](LICENSE)
+
+## 関連リンク
+
+- [信長の野望 Online 九十九の源 計算機](https://minorusekine.github.io/nol_tsukumo/)
+   - [ソースコード リポジトリ](https://github.com/MinoruSekine/nol_tsukumo)
