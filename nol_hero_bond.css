@@ -32,7 +32,13 @@ input{
     font-size: 100%
 }
 
-span.input{
+span.input-label{
+    display: inline-block;
+    width: 6em;
+    font-size: 100%
+}
+
+span.output-label{
     display: inline-block;
     width: 6em;
     font-size: 100%
