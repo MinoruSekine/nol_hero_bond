@@ -3,7 +3,7 @@
  *           Nobunaga's ambition Online.
  *
  * @author Minoru Sekine
- * @copyright Copyrght 2023, 2024 Minoru Sekine
+ * @copyright Copyrght 2023, 2024, 2025 Minoru Sekine
  */
 
 /*
@@ -29,7 +29,7 @@
  * @param {number} status - Status value
  * @return {number} Bond value by specified limit break level and status
  */
-function calcBond(level, status) {
+function calcBond(level: number, status: number) {
   return Math.floor(((level + 6) * status) / 100);
 }
 
@@ -42,7 +42,7 @@ function calcBond(level, status) {
  * @param {number} bond - Bond value
  * @return {number} Necessary status to get specified bond with specified level
  */
-function calcStatus(level, bond) {
+function calcStatus(level: number, bond: number) {
   return Math.ceil((bond * 100) / (level + 6));
 }
 
@@ -50,33 +50,52 @@ function calcStatus(level, bond) {
  * Update all elements on HTML by current inputs.
  */
 function update() {
-  let level = parseInt(document.getElementById('level-select').value, 10);
-  let status = parseInt(document.getElementById('status-input').value, 10);
-  let bondInput = document.getElementById('bond-input');
-  const bond = calcBond(level, status);
-  bondInput.value = bond;
+  const levelSelect = document.getElementById(
+    'level-select',
+  ) as HTMLSelectElement;
+  const statusInput = document.getElementById(
+    'status-input',
+  ) as HTMLInputElement;
+  const bondInput = document.getElementById('bond-input') as HTMLInputElement;
+  if (levelSelect && statusInput && bondInput) {
+    const level = parseInt(levelSelect.value, 10);
+    const status = parseInt(statusInput.value, 10);
+    const bond = calcBond(level, status);
+    bondInput.value = bond.toString();
 
-  let levelInputArray = ['level0-input',
-                         'level1-input',
-                         'level2-input',
-                         'level3-input',
-                         'level4-input'];
-  for (var i = 0; i < levelInputArray.length; i++) {
-    let levelInput = document.getElementById(levelInputArray[i]);
-    levelInput.value = calcStatus(i, bond);
+    const levelInputArray = [
+      'level0-input',
+      'level1-input',
+      'level2-input',
+      'level3-input',
+      'level4-input',
+    ];
+    for (let i = 0; i < levelInputArray.length; i++) {
+      const levelInput = document.getElementById(
+        levelInputArray[i],
+      ) as HTMLInputElement;
+      if (levelInput) {
+        levelInput.value = calcStatus(i, bond).toString();
+      }
+    }
+  } else {
+    alert('Expected HTML element(s) not found.');
   }
 }
 
 window.onload = () => {
-  let levelSelect = document.getElementById('level-select');
-  levelSelect.addEventListener('change', () => {
-    update();
-  });
-
-  let statusInput = document.getElementById('status-input');
-  statusInput.addEventListener('input', () => {
-    update();
-  });
+  const levelSelect = document.getElementById('level-select');
+  const statusInput = document.getElementById('status-input');
+  if (levelSelect && statusInput) {
+    levelSelect.addEventListener('change', () => {
+      update();
+    });
+    statusInput.addEventListener('input', () => {
+      update();
+    });
+  } else {
+    alert('Expected HTML element(s) not found.');
+  }
 
   update();
 };
