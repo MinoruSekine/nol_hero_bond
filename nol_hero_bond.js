@@ -68,8 +68,8 @@ function update() {
 }
 
 window.onload = () => {
-  let levelInput = document.getElementById('level-select');
-  levelInput.addEventListener('change', () => {
+  let levelSelect = document.getElementById('level-select');
+  levelSelect.addEventListener('change', () => {
     update();
   });
 
