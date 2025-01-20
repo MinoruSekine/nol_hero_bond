@@ -47,55 +47,130 @@ function calcStatus(level: number, bond: number) {
 }
 
 /**
- * Update all elements on HTML by current inputs.
+ * Interface to observe NolHeroBondModel.
  */
-function update() {
-  const levelSelect = document.getElementById(
+interface NolHeroBondModelObserverInterface {
+  onUpdateBond(bond: number): void;
+  onUpdateSameStatusForLevel(level: number, status: number): void;
+}
+
+/**
+ * Model of Nol Hero Bond Calculator.
+ */
+class NolHeroBondModel {
+  private level = 0;
+  private status = 1000;
+  private observers: NolHeroBondModelObserverInterface[] = [];
+
+  /**
+   * Initialize instance.
+   */
+  public initialize() {
+    this.setLevel(0);
+    this.setStatus(1000);
+  }
+
+  /**
+   * Register observer for this instance.
+   */
+  public registerObserver(observer: NolHeroBondModelObserverInterface) {
+    this.observers.push(observer);
+  }
+
+  /**
+   * Set level of limit break.
+   */
+  public setLevel(level: number) {
+    this.level = level;
+    this.update();
+  }
+
+  /**
+   * Set status.
+   */
+  public setStatus(status: number) {
+    this.status = status;
+    this.update();
+  }
+
+  private update() {
+    for (const observer of this.observers) {
+      const bond = calcBond(this.level, this.status);
+      observer.onUpdateBond(bond);
+      for (let level = 0; level <= 4; level++) {
+        observer.onUpdateSameStatusForLevel(level, calcStatus(level, bond));
+      }
+    }
+  }
+}
+
+class NolHeroBondController {
+  private levelSelect = document.getElementById(
     'level-select',
   ) as HTMLSelectElement;
-  const statusInput = document.getElementById(
+  private statusInput = document.getElementById(
     'status-input',
   ) as HTMLInputElement;
-  const bondInput = document.getElementById('bond-input') as HTMLInputElement;
-  if (levelSelect && statusInput && bondInput) {
-    const level = parseInt(levelSelect.value, 10);
-    const status = parseInt(statusInput.value, 10);
-    const bond = calcBond(level, status);
-    bondInput.value = bond.toString();
+  private model: NolHeroBondModel;
 
-    const levelInputArray = [
+  public constructor(model: NolHeroBondModel) {
+    this.model = model;
+  }
+
+  public initialize() {
+    this.levelSelect = document.getElementById(
+      'level-select',
+    ) as HTMLSelectElement;
+    if (this.levelSelect) {
+      this.levelSelect.addEventListener('change', () => {
+        this.model.setLevel(parseInt(this.levelSelect.value, 10));
+      });
+    }
+    this.statusInput = document.getElementById(
+      'status-input',
+    ) as HTMLInputElement;
+    if (this.statusInput) {
+      this.statusInput.addEventListener('input', () => {
+        this.model.setStatus(parseInt(this.statusInput.value, 10));
+      });
+    }
+  }
+}
+
+class NolHeroBondView implements NolHeroBondModelObserverInterface {
+  public initialize(model: NolHeroBondModel) {
+    model.registerObserver(this);
+  }
+
+  public onUpdateBond(bond: number): void {
+    const bondInput = document.getElementById('bond-input') as HTMLInputElement;
+    if (bondInput) {
+      bondInput.value = bond.toString();
+    }
+  }
+  public onUpdateSameStatusForLevel(level: number, status: number): void {
+    const statusForLevelInputName: [string, string, string, string, string] = [
       'level0-input',
       'level1-input',
       'level2-input',
       'level3-input',
       'level4-input',
     ];
-    for (let i = 0; i < levelInputArray.length; i++) {
-      const levelInput = document.getElementById(
-        levelInputArray[i],
-      ) as HTMLInputElement;
-      if (levelInput) {
-        levelInput.value = calcStatus(i, bond).toString();
-      }
+    const statusForLevelInput = document.getElementById(
+      statusForLevelInputName[level],
+    ) as HTMLInputElement;
+    if (statusForLevelInput) {
+      statusForLevelInput.value = status.toString();
     }
-  } else {
-    alert('Expected HTML element(s) not found.');
   }
 }
 
-window.onload = () => {
-  const levelSelect = document.getElementById('level-select');
-  const statusInput = document.getElementById('status-input');
-  if (levelSelect && statusInput) {
-    levelSelect.addEventListener('change', () => {
-      update();
-    });
-    statusInput.addEventListener('input', () => {
-      update();
-    });
-  } else {
-    alert('Expected HTML element(s) not found.');
-  }
+const gModel = new NolHeroBondModel();
+const gController = new NolHeroBondController(gModel);
+const gView = new NolHeroBondView();
 
-  update();
+window.onload = () => {
+  gView.initialize(gModel);
+  gController.initialize();
+  gModel.initialize();
 };
