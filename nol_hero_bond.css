@@ -1,54 +1,54 @@
 body{
-    font-size: 1em;
-    font-family: system-ui
+  font-size: 1em;
+  font-family: system-ui
 }
 
 @media screen and (width <= 768px){
-    body{
-	font-size: 3vw
-    }
+  body{
+	  font-size: 3vw
+  }
 }
 
 h1{
-    font-size: 200%
+  font-size: 200%
 }
 
 h2{
-    font-size: 150%
+  font-size: 150%
 }
 
 h3{
-    font-size: 125%
+  font-size: 125%
 }
 
 p{
-    font-size: 100%
+  font-size: 100%
 }
 
 li{
-    font-size: 100%
+  font-size: 100%
 }
 
 input{
-    font-size: 100%
+  font-size: 100%
 }
 
 span.footer-element{
-    display: inline-block;
+  display: inline-block;
 }
 
 span.input-label{
-    display: inline-block;
-    width: 6em;
-    font-size: 100%
+  display: inline-block;
+  width: 6em;
+  font-size: 100%
 }
 
 span.output-label{
-    display: inline-block;
-    width: 6em;
-    font-size: 100%
+  display: inline-block;
+  width: 6em;
+  font-size: 100%
 }
 
 select{
-    font-size: 100%
+  font-size: 100%
 }
