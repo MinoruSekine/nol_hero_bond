@@ -18,6 +18,7 @@ SITE_OUT_JSDOC_DIR := $(SITE_OUT_DIR)/jsdoc
 SITE_OUT_JSDOC_HTML := $(SITE_OUT_JSDOC_DIR)/index.html
 
 VERSION := $(shell git log -n 1 --pretty=format:"%h")
+DATETIME := $(shell git log -n 1 --pretty=format:"%ad")
 
 all: site
 
@@ -38,7 +39,7 @@ $(SITE_OUT_DIR):
 	mkdir -p $@
 
 $(SITE_OUT_HTML): $(SITE_OUT_DIR) $(SRC_HTML)
-	sed 's/NolHeroBondVersion/$(VERSION)/g' $(SRC_HTML) > $(SITE_OUT_HTML)
+	sed -e 's/NolHeroBondVersion/$(VERSION)/g' -e 's/NolHeroBondDateTime/$(DATETIME)/g' $(SRC_HTML) > $(SITE_OUT_HTML)
 
 $(SITE_OUT_CSS): $(SITE_OUT_DIR) $(SRC_CSS)
 	cp $(SRC_CSS) $(SITE_OUT_CSS)

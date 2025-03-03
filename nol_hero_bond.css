@@ -33,10 +33,6 @@ input{
   font-size: 100%
 }
 
-span.footer-element{
-  display: inline-block;
-}
-
 span.input-label{
   display: inline-block;
   width: 6em;
