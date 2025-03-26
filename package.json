@@ -1,4 +1,6 @@
 {
+  "name": "nol_hero_bond",
+  "private": true,
   "devDependencies": {
     "jsdoc": "^4.0.2",
     "stylelint": "^16.6.1",
