@@ -2,17 +2,17 @@
   "name": "nol_hero_bond",
   "private": true,
   "devDependencies": {
-    "jsdoc": "^4.0.2",
+    "@types/node": "^22.7.5",
+    "gts": "^6.0.2",
     "stylelint": "^16.6.1",
     "stylelint-config-standard": "^36.0.1",
-    "typescript": "^5.7.3",
-    "gts": "^6.0.2",
-    "@types/node": "^22.7.5"
+    "typedoc": "^0.28.1",
+    "typescript": "^5.7.3"
   },
   "scripts": {
     "eslint": "eslint -c google nol_hero_bond.js",
     "stylelint": "stylelint nol_hero_bond.css",
-    "doc": "jsdoc . -d out/site/jsdoc",
+    "doc": "typedoc . --out out/site/doc --entryPointStrategy expand ./ --exclude '**/node_modules/**'",
     "lint": "gts lint",
     "clean": "gts clean",
     "compile": "tsc",
