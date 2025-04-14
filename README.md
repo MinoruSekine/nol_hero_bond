@@ -6,6 +6,10 @@
 - ここは 信長の野望 Online 英傑の絆 計算機 のソースコードのリポジトリ
   - main ブランチへマージされた変更は自動的に [GitHub Pages の計算機](https://minorusekine.github.io/nol_hero_bond/) へ反映される
 
+### API reference
+
+- [Source codes API reference](https://minorusekine.github.io/nol_hero_bond/doc/)
+
 ### ライセンス
 
 - [AGPL v3](LICENSE)
