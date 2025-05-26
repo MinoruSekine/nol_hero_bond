@@ -30,7 +30,8 @@ li{
 }
 
 input{
-  font-size: 100%
+  font-size: 100%;
+  margin-bottom: 0.5em
 }
 
 span.input-label{
@@ -46,5 +47,6 @@ span.output-label{
 }
 
 select{
-  font-size: 100%
+  font-size: 100%;
+  margin-bottom: 0.5em
 }
